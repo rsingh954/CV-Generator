@@ -38,20 +38,20 @@ const Form: React.FC = () => {
       },
     }))
   }
-  const handleExperienceChanges = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault()
-    const { name, value, type } = e.target
-    if (type === 'file') {
-      return
-    }
-    setFormData((prevState) => ({
-      ...prevState,
-      experience: {
-        ...prevState.experience,
-        [name]: value
-      },
-    }))
+  const handleChangeExperience = (e: React.ChangeEvent<HTMLInputElement>, id: number) => {
+    const { name, value } = e.target
+
+    setFormData((prevState) => {
+      const newExperience = prevState.experience.map((experienceItem) => {
+        if (experienceItem.id === id) {
+          return { ...experienceItem, [name]: value }
+        }
+        return experienceItem
+      })
+      return { ...prevState, experience: [...newExperience] }
+    })
   }
+
   const handleEducationChanges = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
     const { name, value, type } = e.target
@@ -66,6 +66,23 @@ const Form: React.FC = () => {
       },
     }))
   }
+  const handleAddExperience = () => {
+    setFormData((prevState) => ({
+      ...prevState,
+      experience: [
+        ...prevState.experience,
+        {
+          id: Date.now(),
+          position: '',
+          company: '',
+          city: '',
+          start: '',
+          to: '',
+        },
+      ],
+    }))
+  }
+
   const handleChangeFile = (e: any) => {
     const { name } = e.target
     const file = e.target.files[0]
@@ -88,8 +105,8 @@ const Form: React.FC = () => {
     <div className='appWrapper'>
       <form onSubmit={handleSubmit}>
         <Personal formData={formData} handleChanges={handlePersonalChanges} />
-        <Experience formData={formData} handleChanges={handleExperienceChanges} />
-        <Education formData={formData} handleChanges={handleEducationChanges} />
+        <Experience handleAddExperience={handleAddExperience} formData={formData.experience} handleChanges={handleChangeExperience} />
+        <Education formData={formData.education} handleChanges={handleEducationChanges} />
         <button type='submit'>Submit</button>
         <button type='reset' onClick={() => setFormData(emptyFormData)}>Reset</button>
       </form>
