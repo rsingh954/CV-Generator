@@ -85,7 +85,7 @@ const Form: React.FC = () => {
   }
 
   return (
-    <div>
+    <div className='appWrapper'>
       <form onSubmit={handleSubmit}>
         <Personal formData={formData} handleChanges={handlePersonalChanges} />
         <Experience formData={formData} handleChanges={handleExperienceChanges} />
@@ -93,7 +93,7 @@ const Form: React.FC = () => {
         <button type='submit'>Submit</button>
         <button type='reset' onClick={() => setFormData(emptyFormData)}>Reset</button>
       </form>
-      {showCV === true ? <CV data={formData} /> : ""}
+      <CV data={formData} />
     </div>
   )
 }

@@ -3,3 +3,10 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.appWrapper {
+  display: flex;
+  min-height: 100vh;
+  min-width: 100vh;
+  justify-content: center;
+}
