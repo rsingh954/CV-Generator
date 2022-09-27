@@ -13,23 +13,23 @@ length: 1
 ​
 experience: Array [ {…} ]
 ​​
-0: Object { id: 1664256002710, position: "", city: "SAN BRUNO", … }
+0: Object { id: 1664256002710, position: "", city: "xx", … }
 ​​
 length: 1
 ​​
 <prototype>: Array []
 ​
-personalInfo: Object { firstName: "Satpal", lastName: "Singjh", address: "598 1ST AVE", … }
+personalInfo: Object { firstName: "xxxxxx", lastName: "xxxxxx", address: "xxxxxx", … }
 ​​
 address: "598 1ST AVE"
 ​​
-email: "satpal.singh323@gmail.com"
+email: "xxxxxxxx@gmail.com"
 ​​
 firstName: "Satpal"
 ​​
 lastName: "Singjh"
 ​​
-phoneNumber: "6507431110"
+phoneNumber: "xxxxxxx"
 ​​
 photo: ""
 ​​
