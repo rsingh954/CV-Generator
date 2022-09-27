@@ -12,6 +12,7 @@ const Form: React.FC = () => {
   const [showCV, setShowCV] = useState(false)
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
     console.log(formData)
     setShowCV(true)
   }
