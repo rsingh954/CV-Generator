@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState,useEffect  } from 'react'
 import { emptyFormData } from '../../utilities/emptyFormData'
 import Personal from './Personal'
 import Experience from './Experience'
@@ -11,19 +11,20 @@ const Form: React.FC = () => {
   const [formData, setFormData] = useState(emptyFormData)
   const [showCV, setShowCV] = useState(false)
 
+  useEffect(() => {
+    //Runs only on the first render
+    console.log(formData)
+  }, [formData, showCV]);
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log(formData)
+    setFormData(formData)
     setShowCV(true)
   }
 
   const handlePersonalChanges = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
     const { name, value, type } = e.target
-
-
     if (type === 'file') {
-      console.log(e)
       handleChangeFile(e)
       return
     }
@@ -35,24 +36,24 @@ const Form: React.FC = () => {
       },
     }))
   }
-  const handleChangeExperience = (e: React.ChangeEvent<HTMLInputElement>, id: number) => {
+  const handleChangeExperience = (e: React.ChangeEvent<HTMLInputElement>, id: any) => {
     const { name, value } = e.target
 
     setFormData((prevState) => {
-      const newExperience = prevState.experience.map((experienceItem) => {
+      let newExperience = prevState.experience.map((experienceItem) => {
         if (experienceItem.id === id) {
           return { ...experienceItem, [name]: value }
         }
         return experienceItem
       })
       return { ...prevState, experience: [...newExperience] }
+  
     })
   }
 
   const handleEducationChanges = (e: React.ChangeEvent<HTMLInputElement>, id: number) => {
     e.preventDefault()
     const { name, value } = e.target
-
     setFormData((prevState) => {
       const newEducation = prevState.education.map(educationItem => {
         if (educationItem.id === id) {
@@ -72,7 +73,7 @@ const Form: React.FC = () => {
           id: Date.now(),
           position: '',
           company: '',
-          city: '',
+          description: '',
           start: '',
           to: '',
         },
@@ -133,10 +134,14 @@ const Form: React.FC = () => {
         <Personal formData={formData} handleChanges={handlePersonalChanges} />
         <Experience handleAddExperience={handleAddExperience} formData={formData.experience} handleChanges={handleChangeExperience} onDelete={handleDeleteExperience} />
         <Education handleAddEducation={handleAddEducation} formData={formData.education} handleChanges={handleEducationChanges} onDelete={handleDeleteEducation} />
-        <button type='submit'>Submit</button>
-        <button type='reset' onClick={() => setFormData(emptyFormData)}>Reset</button>
+        <div className="btn-group">
+          <button type='submit'>Submit</button>
+          <button type='reset' onClick={() => setFormData(emptyFormData)}>Reset</button>
+        </div>
+
       </form>
-      <CV data={formData} />
+
+      <CV data = {formData}  />
     </div>
   )
 }

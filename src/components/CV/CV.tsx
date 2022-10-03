@@ -1,70 +1,60 @@
+import { FaRegMap, FaEnvelope, FaPhone } from 'react-icons/fa'
+
 interface Props {
   data: any
 }
-//need to destructure data object
-/*
-education: Array [ {…} ]
-​​
-0: Object { id: 1664256002710, schoolName: "", city: "", … }
-​​
-length: 1
-​​
-<prototype>: Array []
-​
-experience: Array [ {…} ]
-​​
-0: Object { id: 1664256002710, position: "", city: "xx", … }
-​​
-length: 1
-​​
-<prototype>: Array []
-​
-personalInfo: Object { firstName: "xxxxxx", lastName: "xxxxxx", address: "xxxxxx", … }
-​​
-address: "598 1ST AVE"
-​​
-email: "xxxxxxxx@gmail.com"
-​​
-firstName: "Satpal"
-​​
-lastName: "Singjh"
-​​
-phoneNumber: "xxxxxxx"
-​​
-photo: ""
-​​
-title: ""
-*/
+
 const CV: React.FC<Props> = ({ data }) => {
-  console.log(data)
+  console.log(data.experience)
   return (
     <div className="cvWrapper">
       <div className="header">
-        <h1>{data.personalInfo.firstName}</h1>
+        <h1>{data.personalInfo.firstName + " " + data.personalInfo.lastName}</h1>
+        <span>{data.personalInfo.title}</span>
+      </div>
+      <main>
+      <div className="left" >
         <div className="contact">
-          <span className="telephone">T: 123456789 </span>
-          <span className="telephone">E: bingstings@gmail.com </span>
-          <span className="telephone">G: github.com/whateva </span>
+          <img src={data.personalInfo.photo} alt='' />
+          <div className="heading">Contact Me</div>
+          <span className="telephone"><FaPhone/> {data.personalInfo.phoneNumber} </span>
+          <span className="email"><FaEnvelope/> {data.personalInfo.email} </span>
+          <span className="cv-address"><FaRegMap /> 
+          <p>{data.personalInfo.address}</p>
+           </span>
         </div>
       </div>
-      <div className="experience">
-        <h2>Position</h2>
-        <h4>City</h4>
-        <h5>Company</h5>
-        <h6>Start</h6>
-        <h6>To</h6>
-        <h6>description</h6>
-        <h6>description</h6>
-        <h6>description</h6>
+      
+      <div className="right" >
+      <div className="heading">Work Experience</div>
+        {data.experience.map((exp :any) => (
+        <div className="cv-experience">
+          <h2>{exp.position}</h2>
+          <span>{exp.company}</span>
+          <div>{exp.description}</div>
+          <div>{exp.start + "- " + exp.to}</div>
+        </div>
+        ))}
+      <div className="heading">Education</div>
+      {data.education.map((edu: any) => (
+      <div className="cv-education">
+        <h2> {edu.schoolName}</h2>
+        <div> {edu.city}</div>
+        <div> {edu.degree}</div>
+        <div> {edu.subject}</div>
+        <div>{edu.start + "- " + edu.to}</div>
       </div>
-      <div className="education">
-        <h2>School Name</h2>
-        <h4>City</h4>
-        <h5>Degree</h5>
-        <h6>Subject</h6>
-        <h6>Start</h6>
-        <h6>To</h6>
+      ))}
+      {/* <div className="cv-education">
+        <h2> {data.education[0].schoolName}</h2>
+        <div> {data.education[0].city}</div>
+        <div> {data.education[0].degree}</div>
+        <div> {data.education[0].subject}</div>
+        <div>{data.education[0].start + "- " + data.education[0].to}</div>
+      </div> */}
+
       </div>
+      </main>
     </div>
   )
 }

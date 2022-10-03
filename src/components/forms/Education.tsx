@@ -7,6 +7,7 @@ function Education(props: any) {
       handleChanges={props.handleChanges}
       id={educationItem.id}
       onDelete={props.onDelete}
+      handleAddEducation={props.handleAddEducation}
 
     />
   ))
@@ -14,8 +15,7 @@ function Education(props: any) {
 
     <div className="education">
       {education}
-      <button type="button" onClick={props.handleAddEducation}>Add </button>
-
+      {/* <button type="button" onClick={props.handleAddEducation}>Add </button> */}
     </div>
   )
 }

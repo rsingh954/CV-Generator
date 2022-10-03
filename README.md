@@ -20,3 +20,4 @@ I learned that useContext is a better way to handle state
 With passing props I feel like there is unnecessary effort with abstracting until you get a single source of truth if that makes sense.
 
 I usually use the useContext api with reducers but I decided to try and make something without it.
+

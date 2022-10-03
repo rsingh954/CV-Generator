@@ -8,8 +8,8 @@ interface Props {
 const Input: React.FC<Props> = ({ type, name, placeholder, onChange, value }) => {
   return (
     <div className="form-group">
-      <label htmlFor={name} className={name}>{placeholder}</label>
-      <input value={value} onChange={onChange} type={type} name={name} placeholder={placeholder}></input>
+      <label htmlFor={name} className={name}> {(name === 'to' || name === 'start') ? placeholder : ""}</label>
+      <input spellCheck={true} value={value} onChange={onChange} type={type} name={name} placeholder={placeholder}></input>
     </div>
   )
 }

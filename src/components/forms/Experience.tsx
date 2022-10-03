@@ -8,13 +8,15 @@ export default function Experience(props: any) {
       id={exp.id}
       onChange={props.handleChanges}
       onDelete={props.onDelete}
+      handleAddExperience={props.handleAddExperience}
     />
   ))
 
   return (
     <div className="experience">
       {experience}
-      <button type="button" onClick={props.handleAddExperience}>Add </button>
+      {/* <button type="button" onClick={props.handleAddExperience}>Add </button> */}
+
     </div>
   )
 }
