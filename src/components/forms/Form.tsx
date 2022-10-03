@@ -1,5 +1,5 @@
-import React, { useRef, useState,useEffect  } from 'react'
-import { emptyFormData } from '../../utilities/emptyFormData'
+import React, { useState,useEffect  } from 'react'
+import { emptyFormData, exampleFormData } from '../../utilities/emptyFormData'
 import Personal from './Personal'
 import Experience from './Experience'
 import Education from './Education'
@@ -8,7 +8,7 @@ import CV from '../CV/CV'
 
 const Form: React.FC = () => {
 
-  const [formData, setFormData] = useState(emptyFormData)
+  const [formData, setFormData] = useState(exampleFormData)
   const [showCV, setShowCV] = useState(false)
 
   useEffect(() => {
