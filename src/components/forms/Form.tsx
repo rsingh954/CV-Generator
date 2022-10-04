@@ -135,7 +135,6 @@ const Form: React.FC = () => {
         <Experience handleAddExperience={handleAddExperience} formData={formData.experience} handleChanges={handleChangeExperience} onDelete={handleDeleteExperience} />
         <Education handleAddEducation={handleAddEducation} formData={formData.education} handleChanges={handleEducationChanges} onDelete={handleDeleteEducation} />
         <div className="btn-group">
-          <button type='submit'>Submit</button>
           <button type='reset' onClick={() => setFormData(emptyFormData)}>Reset</button>
         </div>
 
